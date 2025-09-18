@@ -1,0 +1,9 @@
+<div *ngFor="let s of finaldata$ | async">
+    <p>{{s.name}}</p>
+    <p>{{s.password}}</p>
+    <p>{{s.mobile}}</p>
+    <p>{{s.email}}</p>
+    <p>{{s.dateofBirth}}</p>
+    <input type="submit" (click)="deletestudentbyID(s.id)" value="delete">
+</div>
+

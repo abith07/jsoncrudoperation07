@@ -1,0 +1,78 @@
+<form [formGroup]="formg" (ngSubmit)="addInfo()">
+    <div>
+    <label>username</label>
+   
+    <input type="text" formControlName="name" id="name">
+    <div *ngIf="formg.get('name')?.['invalid'] && (formg.get('name')?.['dirty'] ||formg.get('name')?.['touched'])">
+        <small *ngIf="formg.get('name')?.errors?.['required']">
+            username is required
+        </small>
+        <small *ngIf="formg.get('name')?.errors?.['minlength']||formg.get('name')?.errors?.['maxlength']">
+            min is 3 and max is 12
+        </small>
+        
+
+    </div>
+    </div>
+    <div>
+        <label>password</label>
+       
+        <input type="text" formControlName="password" id="password">
+        <div *ngIf="formg.get('password')?.['invalid'] && (formg.get('password')?.['dirty'] ||formg.get('password')?.['touched'])">
+            <small *ngIf="formg.get('password')?.errors?.['required']">
+                password is required
+            </small>
+            <small *ngIf="formg.get('password')?.errors?.['pattern']">
+               follow the pattern
+            </small>
+            
+    
+        </div>
+        </div>
+        <div>
+            <label>mobile</label>
+           
+            <input type="text" formControlName="mobile" id="mobile">
+            <div *ngIf="formg.get('mobile')?.['invalid'] && (formg.get('mobile')?.['dirty'] ||formg.get('mobile')?.['touched'])">
+                <small *ngIf="formg.get('mobile')?.errors?.['required']">
+                    mobile is required
+                </small>
+                <small *ngIf="formg.get('mobile')?.errors?.['pattern']">
+                   follow the pattern
+                </small>
+                
+        
+            </div>
+            </div>
+            <div>
+                <label>email</label>
+               
+                <input type="text" formControlName="email" id="email">
+                <div *ngIf="formg.get('email')?.['invalid'] && (formg.get('email')?.['dirty'] ||formg.get('email')?.['touched'])">
+                    <small *ngIf="formg.get('email')?.errors?.['required']">
+                        email is required
+                    </small>
+                    <small *ngIf="formg.get('email')?.errors?.['email']">
+                       follow the pattern
+                    </small>
+                    
+            
+                </div>
+                </div>
+                <div>
+                    <label>DateOfBirth</label>
+                   
+                    <input type="text" formControlName="dateofBirth" id="dateofBirth">
+                    <div *ngIf="formg.get('dateofBirth')?.['invalid'] && (formg.get('dateofBirth')?.['dirty'] ||formg.get('dateofBirth')?.['touched'])">
+                        <small *ngIf="formg.get('dateofBirth')?.errors?.['required']">
+                            DOB is required
+                        </small>
+                        <small *ngIf="formg.get('dateofBirth')?.errors?.['pattern']">
+                           follow the pattern
+                        </small>
+                        
+                
+                    </div>
+                    </div>
+                    <input type="submit" [disabled]="formg.invalid" value="register">
+</form>

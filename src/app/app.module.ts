@@ -3,14 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddstudentComponent } from './componenet/addstudent/addstudent.component';
+import{  HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewstudentComponent } from './componenet/viewstudent/viewstudent.component';
+import { ViewbyIdStudentComponent } from './componenet/viewby-id-student/viewby-id-student.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddstudentComponent,
+    ViewstudentComponent,
+    ViewbyIdStudentComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
