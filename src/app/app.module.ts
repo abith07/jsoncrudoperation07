@@ -8,13 +8,15 @@ import{  HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewstudentComponent } from './componenet/viewstudent/viewstudent.component';
 import { ViewbyIdStudentComponent } from './componenet/viewby-id-student/viewby-id-student.component';
+import { UpdatecomponentComponent } from './componenet/updatecomponent/updatecomponent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddstudentComponent,
     ViewstudentComponent,
-    ViewbyIdStudentComponent
+    ViewbyIdStudentComponent,
+    UpdatecomponentComponent
   ],
   imports: [
     BrowserModule,

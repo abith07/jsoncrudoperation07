@@ -2,7 +2,7 @@ import { getLocaleDateFormat } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { filter, map, Observable, of, pipe } from 'rxjs';
 import { Student } from 'src/app/model/student';
 import { StuserviceService } from 'src/app/service/stuservice.service';
 
@@ -30,7 +30,9 @@ export class ViewstudentComponent implements OnInit {
    // throw new Error('Method not implemented.');
    getData(){
    this.data$=this.servicecall.viewStudent();
-   this.finaldata$=this.data$;
+   this.finaldata$=this.data$
+   .pipe(map((d)=>d.sort((a:Student,b:Student)=>a.name.localeCompare(b.name) )))
+   
   }
 
   deletestudentbyID(id:any){
@@ -40,5 +42,20 @@ export class ViewstudentComponent implements OnInit {
       //this.rr.navigate(['/viewStudent'])
     });
   }
+  searchValue(e:any){
+    const valuegiven=e.target.value;
+    if(!valuegiven){
+      this.finaldata$=this.data$
+      return
+    }
+    else{
+      this.finaldata$=this.data$.pipe(map((stu)=>{
+        return stu.filter(
+          (student)=>
+            student.name.toString().includes(valuegiven));}))
+      }
+      }
+    }
+  
 
-}
+

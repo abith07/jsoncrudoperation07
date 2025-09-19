@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StuserviceService {
-  apiurl:string="https://ec2-13-204-47-249.projects.wecreateproblems.com/proxy/8000/students"
+  apiurl:string="https://ec2-43-204-211-138.projects.wecreateproblems.com/proxy/8000/students"
   constructor(private httpcall:HttpClient){}
   addStudent(student:Student):Observable<any>{
     return this.httpcall.post(this.apiurl,student);
@@ -22,6 +22,10 @@ export class StuserviceService {
   }
   deleteStudent(id:any):Observable<any>{
     return this.httpcall.delete(this.apiurl+"/"+id);
+  }
+
+  updateStudent(id:any,student:Student):Observable<any>{
+    return this.httpcall.put(this.apiurl+"/"+id,student)
   }
 
   

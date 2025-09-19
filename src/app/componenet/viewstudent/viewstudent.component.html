@@ -1,3 +1,4 @@
+<input type="text" (input)="searchValue($event)">
 <div *ngFor="let s of finaldata$ | async">
     <p>{{s.name}}</p>
     <p>{{s.password}}</p>

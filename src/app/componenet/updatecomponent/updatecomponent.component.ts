@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StuserviceService } from 'src/app/service/stuservice.service';
 
 @Component({
-  selector: 'app-addstudent',
-  templateUrl: './addstudent.component.html',
-  styleUrls: ['./addstudent.component.css']
+  selector: 'app-updatecomponent',
+  templateUrl: './updatecomponent.component.html',
+  styleUrls: ['./updatecomponent.component.css']
 })
-export class AddstudentComponent implements OnInit {
+export class UpdatecomponentComponent implements OnInit {
   formg!:FormGroup;
-  constructor(private formb:FormBuilder,private servicecall:StuserviceService){
+  idvalues!:string
+  constructor(private formb:FormBuilder,private servicecall:StuserviceService,private ar:ActivatedRoute,private rr:Router){
     
   }
   ngOnInit(): void {
+    this.idvalues=String(this.ar.snapshot.paramMap.get('id'))
+    if(this.idvalues){
+      this.servicecall.viewStudentId(this.idvalues).subscribe((data)=>{
+        this.formg.patchValue(data)
+      })
+    }
     this.formg=this.formb.group({
       name:["",[Validators.required,Validators.minLength(3),Validators.maxLength(12)]],
       password:["",[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[^A-Za-z0-9]).{8,}$")]],
@@ -24,15 +32,14 @@ export class AddstudentComponent implements OnInit {
     //throw new Error('Method not implemented.');
   }
   
-  addInfo(){
+  updateInfo(){
     if(this.formg.valid){
-      this.servicecall.addStudent(this.formg.value).subscribe((data)=>console.log(data));
+      this.servicecall.updateStudent(this.idvalues,this.formg.value).subscribe((data)=>{
+        alert("update");
+      });
       alert("success");
     }
   }
  
 
 }
-//git remote add origin https://github.com/abith07/jsoncrudoperation07.git
-//git push -u origin main
-
